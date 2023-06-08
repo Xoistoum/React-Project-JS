@@ -8,8 +8,6 @@ function App() {
  
   <h1 className="greeting">Search for books</h1>
 
-  
-
   <form action="#" id="navbar-search" className="navbar_search" >
       <input class="input navbar_input" />
       <span> 
@@ -17,16 +15,17 @@ function App() {
       </span>
     </form>
 
- 
-  <div class="" id="navbarText">
+  <div class="" id="navbarText" className="navbar_cath">
      <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link">Cathegories <span class="sr-only"></span></a>
+        <a class="nav-link">Cathegories 
+        </a>
       </li>
     </ul>
      <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" >Sorting by</a>
+        <a class="nav-link" >Sorting by
+        </a>
       </li>
     </ul>
   </div>
