@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
-
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
   <button class="btn btn-secondary btn-sm" type="button">
     Art
   </button>
-  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="sr-only"></span>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -53,7 +53,7 @@ function App() {
   <button class="btn btn-secondary btn-sm" type="button">
     Name
   </button>
-  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="sr-only"></span>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
