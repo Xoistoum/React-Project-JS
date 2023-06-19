@@ -4,11 +4,15 @@ import './App.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import axios from 'axios';
 
+
 function App() {
 
-  const [book, setBook] = useState("");
+  const [book, setBook] = useState('');
   const [result, setResult] = useState([]);
   const [apiKey, setApiKey] = useState("AIzaSyARS2L8uutgNYKCGpS5N17YG3J3_Mae12E");
+  const [quantity, setQuantity] = useState();
+  const [pagination, setPagin] = useState();
+
 
 function handleChange(event) {
  const book = event.target.value;
@@ -16,17 +20,19 @@ function handleChange(event) {
 }
 function handleSubmit(event) {
   event.preventDefault();
-  axios.get("https://www.googleapis.com/books/v1/volumes?q="+book+"&key="+apiKey+"&maxResult=40")
- .then(data =>{
+  axios.get("https://www.googleapis.com/books/v1/volumes?q="+book+"&key="+apiKey+"&maxResults=30")
+  .then(data => {
+  console.log(data);
   console.log(data.data.items);
   setResult(data.data.items);
+  setQuantity(data);
  })
 }
   return (
     <div>
 <nav class="navbar navbar-light">
   <h1 className="greeting">Search for books</h1>
-  <form action="#" id="navbar-search" onSubmit={handleSubmit} className="navbar_search mt-10" >
+  <form action="#" id="navbar-search" onSubmit={handleSubmit} className="navbar_search" >
       <input class="input navbar_input" type="text" onChange={handleChange} placeholder="Type to search..." autoComplete='on' data-path="0.0.0.0.2.0.1" />
       <span> 
       <div class="input-group-text" data-path="0.0.0.0.2.0.0">
