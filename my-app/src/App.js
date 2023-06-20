@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
@@ -13,10 +13,34 @@ function App() {
   const [quantity, setQuantity] = useState();
   const [pagination, setPagin] = useState();
 
+  const callbackFunction = (entries) => {
+    const [ entry ] = entries
+    setResult(entry.isEntersecting)
+  }
 
-function handleChange(event) {
- const book = event.target.value;
- setBook(book);
+
+   const options = {
+    root: null,
+    rootMargin: "0px",
+    theshold: 1
+   }
+
+   useEffect(() => {
+    const observer = new IntersectionObserver(callbackFunction, options)
+      if (book.current) observer.observe(result);
+
+   })
+
+  const BookCard = (props) => {
+    const {volumeInfo} = props.info;
+    const {title, authors, subtitle, publishedDate} = props.volumeInfo;
+
+
+  }
+
+  function handleChange(event) {
+   const book = event.target.value;
+   setBook(book);
 }
 function handleSubmit(event) {
   event.preventDefault();
@@ -26,8 +50,18 @@ function handleSubmit(event) {
   console.log(data.data.items);
   setResult(data.data.items);
   setQuantity(data);
- })
+ });
 }
+
+function handlePagin(event) {
+  axios.get("https://www.googleapis.com/books/v1/volumes?q="+book+"&key="+apiKey+"&maxResults=30")
+  .then(data => {
+  console.log(data);
+  console.log(data.data.items);
+  setResult(data.data.items);
+ });
+}
+
   return (
     <div>
 <nav class="navbar navbar-light">
@@ -88,17 +122,24 @@ function handleSubmit(event) {
 </div>
   </div>
   </div>
-
-<div>
-
-</div>
-
 </nav>
 
- {result.map(book => (
-  <a target='_blank' href={book.volumeInfo.previewLink}>
-    <img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.title} />
-  </a>))}
+
+<div className='bookCards'>
+{result.map((book, index) => (
+<a target='_blank' href={book.volumeInfo.previewLink} className='book-card' key={book.id}>
+<h3 className='book-category'>{book.volumeInfo.categories + ''}</h3>
+<img src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.title} width={250} height={350}/>
+<h3 className='book-title'>{book.volumeInfo.title}</h3>
+<h3 className='book-author'>{book.volumeInfo.authors + ''}</h3>
+</a>
+))}
+</div>
+
+<div>
+<button type="button" class="btn btn-outline-warning justify-content-center btn-lg" className="load_more_button" aria-haspopup="true">Load more</button>
+</div>
+  
 
 </div>
   );
