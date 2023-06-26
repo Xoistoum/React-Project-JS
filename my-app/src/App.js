@@ -2,16 +2,51 @@ import React, {useEffect, useState} from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 function App() {
+
+  
 
   const [book, setBook] = useState('');
   const [result, setResult] = useState([]);
   const [apiKey, setApiKey] = useState("AIzaSyARS2L8uutgNYKCGpS5N17YG3J3_Mae12E");
   const [quantity, setQuantity] = useState();
   const [pagination, setPagin] = useState();
+  const [reload, setReload] = useState();
+  const [count, setCount] = useState(0);
+
+
+  const sortBookNew = (event) => {
+    event.preventDefault();
+    result.map(book => {
+    if (book.volumeInfo.hasOwnProperty('publishedDate') === false) book.volumeInfo.publishedDate = '0000';
+    });
+    result.sort((a, b) => {
+    return parseInt(b.volumeInfo.publishedDate.substring(0,4) - a.volumeInfo.publishedDate.substring(0,4))});
+    setReload({});
+    }
+    
+    const sortBookName = (event) => {
+    event.preventDefault();
+    result.sort((a, b) => {
+    return (a.volumeInfo.title.localeCompare(b.volumeInfo.title))});
+    setReload({});
+    }
+    
+    const sortBookPopularity = (event) => {
+    event.preventDefault();
+    axios.get('https://www.googleapis.com/books/v1/volumes?q='+book+'&key='+apiKey+'&maxResults=30'+'&startIndex='+count.toString()+'&orderBy=relevance')
+    .then(data => {
+    console.log(data);
+    console.log(data.data.items);
+    setResult(data.data.items);
+    });
+    setReload({});
+    }
+  
 
   const callbackFunction = (entries) => {
     const [ entry ] = entries
@@ -110,15 +145,16 @@ function handlePagin(event) {
       </li>
     </ul>
     <div class="btn-group">
-  <button class="btn btn-secondary btn-sm" type="button">
+  <button class="btn btn-secondary btn-sm" onClick={sortBookPopularity} type="button">
     relevance
   </button>
   <button type="button" class="btn btn-sm btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <span class="sr-only"></span>
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#">newest</a>
-  </div>
+    <a class="dropdown-item" onClick={sortBookName} href="#">name</a>
+    <a class="dropdown-item" onClick={sortBookNew} href="#">newest</a>
+  </div> 
 </div>
   </div>
   </div>
