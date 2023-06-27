@@ -28,10 +28,9 @@
 }
 .navbar {
   justify-content: center;
-  background: url(../img/article.jpg);
-  background-size: 100% 300%;
-  background-repeat: no-repeat;
-  size: 700px;
+  background: url(../img/img3.png);
+  background-repeat: repeat;
+  size: 100px;
 }
 
 .App-header {
@@ -112,15 +111,117 @@
     padding-bottom: 10px;
     }
 
-.load_more_button {
-  display: flex;
-  color: #1d2a38;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffd967;
-  border-color: #000000;
-  margin: 10px;
-}
+    .results {
+      align-items: center;
+      justify-content: center;
+      display: flex;
+      font-size: 26px;
+      margin: 10px;
+      color: #44400b;
+      background-color: rgb(248, 246, 243);
+    }
+
+
+    .pagination {
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pagination-button-left {
+    display: flex;
+    color: #1d2a38;
+    background-color: #ffd967;
+    border-color: #000000;
+    margin: 10px;
+    }
+
+    .pagination-button {
+    display: flex;
+    color: #1d2a38;
+    background-color: #ffd967;
+    border-color: #000000;
+    margin: 10px;
+    }
+    .image-container {
+      width: 50%;
+      height: 100%;
+      background-color: rgb(207, 190, 163);
+      }
+      
+      .info-text {
+      width: 50%;
+      height: 100%;
+      background-color: rgb(235, 233, 221);
+      }
+      
+      .left {
+      left: 0;
+      }
+      
+      .right {
+      right: 0;
+      }
+
+
+     .split {
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+      }
+      
+      .centered {
+      width: 70%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      }
+      
+      .info-image {
+      height: 70vh;
+      width: 45vh;
+      }
+
+
+     .book-link {
+      text-decoration: none;
+      }
+      
+      .description {
+      color: #31220a;
+      font-size: 14px;
+      }
+      
+      .close {
+      position: absolute;
+      right: -8%;
+      top: -4%;
+      font-size: 45px;
+      font-weight: 600;
+      cursor: pointer;
+      }
+      
+      .book-card {
+      cursor: pointer;
+      }
+
+        .main-cat {
+        font-size: 30px;
+        }
+        .main-title {
+        font-size: 30px;
+        }
+        .main-author {
+        font-size: 30px;
+        }
+        .description {
+        font-size: 30px;
+        }
 
 .App-link {
   color: #00c8ff;
