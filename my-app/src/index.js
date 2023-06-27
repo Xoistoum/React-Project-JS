@@ -10,7 +10,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
 <React.StrictMode>
-  <HashRouter basename={windows.location.pathname || ''}>
+  <HashRouter basename={window.location.pathname || ''}>
 <Router>
 <Routes>
 <Route path='/' element={<App />} />
